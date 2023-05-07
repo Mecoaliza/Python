@@ -1,21 +1,19 @@
 
 import requests
 
-link = "https://api.splink.org.br/datasets/format/json"
+link = "https://servicodados.ibge.gov.br/api/v3/agregados/7392/periodos/-6/variaveis/10484?localidades=N1[all]"
 
-def get_link():
-    response = get(link).json()
-    return response[link]
+requisicao = requests.get(link)
+informacoes = requisicao.json()
 
+import pprint
+pprint.pprint(informacoes[0])
 
-#requisicao = requests.get(link)
-#informacoes = requisicao.json()
+#def get_link():
+    #response = get(link).json()
+    #return response[link]
+item_busca = informacoes[0]['variavel'] #Só a variável do dicionario
+resultados = informacoes[0]['resultados'][0]['series'] #Só a série do dicionario
 
-#import pprint
-#pprint.pprint()
-
-#item_busca = informacoes[0]['variavel'] #Só a variável
-#resultados = informacoes[0]['resultados'][0]['series'] #Só a série
-
-#print(item_busca)
-#print(resultados)
+print(item_busca)
+print(resultados)
